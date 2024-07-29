@@ -27,16 +27,27 @@ function App() {
     console.log(jsObject);
     console.log('Before update:', dictState);
     updateState(prevState => {return {...prevState, projects: [...prevState.projects, jsObject]}});
-    console.log(dictState);
-    
     console.log('After update:', dictState);
 }
+
+function handleDeletion(title){
+  console.log(title);
+  updateState(prevState => {const editedProjects = prevState.projects.filter(entry => {
+      return entry.id !== title})
+      console.log(editedProjects);
+      return {...prevState, projects: editedProjects}});
+      
+  updateSelection(null, null);
+  // const newData = (data.projects.filter(entry => {
+  //     return entry.id !== title}));
+  // console.log(newData
+};
 
 function addTask(newTask, projectId) {
   // console.log(selectedProject);
   // const newTask = refInputExists.current.value;
-  console.log(newTask);
-  console.log(projectId);
+  // console.log(newTask);
+  // console.log(projectId);
   // const updatedData = {
   //     ...selectedProject,
   //     listOfTasks: newList
@@ -68,24 +79,18 @@ function addTask(newTask, projectId) {
 function clearTask (val, projectId) {
   updateState(prevState => {
       const editedData = prevState.tasks.filter(entry => {
-        console.log(projectId);
-        console.log(val);
         if (entry.projectId === projectId){
-          console.log('true');
           return entry.text !== val
         }
         else {return entry}
       })
-      console.log(editedData);
       const arr = editedData.filter(entry => 
         entry.projectId === projectId  
         )
-      console.log(arr);
       if (arr.length === 0){
         setLocalButtonClicked(false);
       }
   return {...prevState, tasks: editedData}});
-  console.log(dictState);
   // data.tasks.map(entry => {
   //   if (entry.id === projectId){
   //       const editedArray = entry.listOfTasks.filter(task => task !== val);
@@ -119,7 +124,7 @@ useEffect(() => {
 
   }
 
-  useEffect(()=>{console.log(localButtonClicked), [localButtonClicked]})
+  // useEffect(()=>{console.log(localButtonClicked), [localButtonClicked]})
 
 
   const clickButton = (val) => {
@@ -151,7 +156,7 @@ const updateButton = (val) => {
   return (
     <main className="h-screen my-8 flex gap-8">
       <ProjectsSidebar getCommonTasks={getCommonTasks} setLocalButtonClicked={updateButton} buttonClicked={buttonClicked} title={titleSelected} updateSelection={updateSelection} handleAddProject={handleAddProject} dictState={dictState}></ProjectsSidebar>
-      {titleSelected ? <SelectedTask localButtonClicked={localButtonClicked} addTask={addTask} clearTask={clearTask} title={titleSelected} data={dictState} updateState={updateState} updateSelection={updateSelection} ></SelectedTask> : <DefaultScreen handleAddProject={handleAddProject}></DefaultScreen>}
+      {titleSelected ? <SelectedTask handleDeletion={handleDeletion} localButtonClicked={localButtonClicked} addTask={addTask} clearTask={clearTask} title={titleSelected} data={dictState} updateState={updateState} updateSelection={updateSelection} ></SelectedTask> : <DefaultScreen handleAddProject={handleAddProject}></DefaultScreen>}
       {buttonClicked && <NewProject sendFormBody={sendFormBody} buttonClicked={buttonClicked} clickButton={clickButton} dialogState={bigDialogOpen} setDialogState={setDialogState} dictState={dictState} updateState={updateState}></NewProject>}
     </main>
   );

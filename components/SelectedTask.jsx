@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import SubTasks from "./SubTasks";
 import Button from "./Button";
 
-export default function SelectedTask ({ localButtonClicked, addTask, clearTask, data, title, updateState, updateSelection }){
+export default function SelectedTask ({ handleDeletion, localButtonClicked, addTask, clearTask, data, title, updateState, updateSelection }){
 
     const [selection, setSelection] = useState({id: ''});
     // const [buttonClicked, setButtonClicked] = useState(false);
@@ -35,14 +35,9 @@ export default function SelectedTask ({ localButtonClicked, addTask, clearTask, 
     //     ;
     // };
 
-    function handleDeletion(){
-        console.log(title);
-        const newData = (data.projects.filter(entry => {
-            return entry.id !== title}));
-        updateState(prevState => {return {...prevState, projects: []}});
-        updateSelection(null, null);
-        console.log(newData);
-    };
+    function handleClickDeletion(title){
+        handleDeletion(title);
+    }
     
 
     return <div className="w-[35rem] mt-16">

@@ -25,7 +25,6 @@ let findCurrentVal = [];
         // console.log(dictState);
         findCurrentVal = dictState.projects.filter(entry => {
             return entry.id === combination});
-        console.log(findCurrentVal);
         if (titleRef.current.value && descRef.current.value && dueDateRef.current.input.value){
             if (findCurrentVal.length > 0) {
                 setOutput("You are entering a duplicate value")

@@ -4,16 +4,12 @@ import Button from "./Button";
 export default function ProjectsSidebar({ taskStore, getCommonTasks, setLocalButtonClicked, title, updateSelection, dictState, handleAddProject}){
 
     const pointerRef = useRef();
- 
-   
 
     const [selectedTitle, setSelectedTitle] = useState(false);
 
     function handleHighlight(val1, val2){
         updateSelection(val1, val2);
-
         setSelectedTitle(true);
-        console.log(selectedTitle);
     }
 
     useEffect (()=>{

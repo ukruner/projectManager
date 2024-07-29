@@ -96,7 +96,6 @@ export default function SubTasks ({data, localButtonClicked, addTask, clearTask,
             </div>
             { localButtonClicked === projectId && <ul className="p-4 mt-8 rounded-md bg-stone-100">
             {data.tasks.map(entry => {
-                console.log(entry)
                 if(entry.projectId === projectId){
                     // console.log(entry.listOfTasks)
                     return <li key={entry.text} className="flex justify-between my-4"> <p>{entry.text}</p><Button onClick={() => handleDelete(entry.text)} className="text-stone-600 hover:text-stone-950 px-2">Clear</Button>
