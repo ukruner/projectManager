@@ -20,7 +20,7 @@ let findCurrentVal = [];
     
     function handleSave(){
         const combination = titleRef.current.value+descRef.current.value;
-        console.log(dueDateRef.current.input.value);
+
         // console.log(combination);
         // console.log(dictState);
         findCurrentVal = dictState.projects.filter(entry => {

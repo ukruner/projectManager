@@ -37,7 +37,7 @@ function handleDeletion(title){
       console.log(editedProjects);
       return {...prevState, projects: editedProjects}});
       
-  updateSelection(null, null);
+  // updateSelection(null, null);
   // const newData = (data.projects.filter(entry => {
   //     return entry.id !== title}));
   // console.log(newData
