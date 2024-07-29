@@ -13,7 +13,7 @@ export default function ProjectsSidebar({ taskStore, getCommonTasks, setLocalBut
         updateSelection(val1, val2);
 
         setSelectedTitle(true);
-        console.log(selectedTitle);
+        // console.log(selectedTitle);
     }
 
     useEffect (()=>{

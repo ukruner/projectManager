@@ -20,12 +20,12 @@ let findCurrentVal = [];
     
     function handleSave(){
         const combination = titleRef.current.value+descRef.current.value;
-        console.log(dueDateRef.current.input.value);
+        // console.log(dueDateRef.current.input.value);
         // console.log(combination);
         // console.log(dictState);
         findCurrentVal = dictState.projects.filter(entry => {
             return entry.id === combination});
-        console.log(findCurrentVal);
+        // console.log(findCurrentVal);
         if (titleRef.current.value && descRef.current.value && dueDateRef.current.input.value){
             if (findCurrentVal.length > 0) {
                 setOutput("You are entering a duplicate value")

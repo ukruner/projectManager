@@ -18,26 +18,22 @@ function App() {
   // const [selection, setSelection] = useState(null);
   const [dictState, setDictState] = useState({projects: [], tasks: []});
 
-  function sendFormBody(titleval, descriptionval, dueDateval, idval){
+  function sendFormBody(titleval, descriptionval, dueDateval){
     const jsObject = {id: '', title:'', description:'', dueDate:''};
     jsObject.id = titleval+descriptionval;
     jsObject.title = titleval,
     jsObject.description = descriptionval,
     jsObject.dueDate = dueDateval;
-    console.log(jsObject);
-    console.log('Before update:', dictState);
+
     updateState(prevState => {return {...prevState, projects: [...prevState.projects, jsObject]}});
-    console.log('After update:', dictState);
 }
 
 function handleDeletion(title){
-  console.log(title);
   updateState(prevState => {const editedProjects = prevState.projects.filter(entry => {
       return entry.id !== title})
-      console.log(editedProjects);
       return {...prevState, projects: editedProjects}});
       
-  // updateSelection(null, null);
+  updateSelection(null, null);
   // const newData = (data.projects.filter(entry => {
   //     return entry.id !== title}));
   // console.log(newData
