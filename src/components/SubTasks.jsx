@@ -95,22 +95,9 @@ export default function SubTasks ({data, localButtonClicked, addTask, clearTask,
             <Button onClick={handleSave} className="text-stone-600 hover:text-stone-950 px-2"> Add Task </Button>
             </div>
             { localButtonClicked === projectId && <ul className="p-4 mt-8 rounded-md bg-stone-100">
-            {data.tasks.map(entry => {
-                console.log(entry)
-                if(entry.projectId === projectId){
-                    // console.log(entry.listOfTasks)
-                    return <li key={entry.text} className="flex justify-between my-4"> <p>{entry.text}</p><Button onClick={() => handleDelete(entry.text)} className="text-stone-600 hover:text-stone-950 px-2">Clear</Button>
-</li>}})
+            {data.filter(entry => entry.id === projectId).map((entry)=> entry.tasks.map(task => (<li key={task} className="flex justify-between my-4"> <p>{task}</p><Button onClick={() => handleDelete(task)} className="text-stone-600 hover:text-stone-950 px-2">Clear</Button>
+                    </li>)))}
 
-}
-                    
-                    
-                     {/* {selectedProject.listOfTasks.map(entry => (
-                     <li key={entry} className="flex justify-between my-4">
-                     <p>{entry}</p><Button onClick={() => clearTask(entry)} className="text-stone-600 hover:text-stone-950 px-2">Clear</Button>
-                 </li>)
-
-)} */}
             </ul>}
             {localButtonClicked === projectId && <p>TESTING IT</p>}
     </div>

@@ -23,7 +23,7 @@ let findCurrentVal = [];
         // console.log(dueDateRef.current.input.value);
         // console.log(combination);
         // console.log(dictState);
-        findCurrentVal = dictState.projects.filter(entry => {
+        findCurrentVal = dictState.filter(entry => {
             return entry.id === combination});
         // console.log(findCurrentVal);
         if (titleRef.current.value && descRef.current.value && dueDateRef.current.input.value){

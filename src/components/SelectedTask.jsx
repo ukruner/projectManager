@@ -9,7 +9,7 @@ export default function SelectedTask ({ handleDeletion, localButtonClicked, addT
     
     // console.log(data);
     useEffect(()=>{if (title){
-    const filtered = data.projects.filter(entry => {
+    const filtered = data.filter(entry => {
         if (entry.title+entry.description === title){
             return entry;
         }
