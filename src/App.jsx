@@ -7,17 +7,17 @@ import { useState, useEffect} from "react";
 function App() {
 
   const [buttonClicked, setButtonClicked] = useState(false);
-
   const [localButtonClicked, setLocalButtonClicked] = useState(false);
   const [titleSelected, setTitleSelected] = useState();
-
   const [bigDialogOpen, setBigDialogOpen] = useState(false);
-
-  const [taskStore, setTaskStore] = useState([]);
-
-  // const [selection, setSelection] = useState(null);
   const [dictState, setDictState] = useState({projects: [], tasks: []});
 
+
+  useEffect(() => {
+    console.log('State updated:', dictState);
+  }, [dictState]);
+
+  
   function sendFormBody(titleval, descriptionval, dueDateval){
     const jsObject = {id: '', title:'', description:'', dueDate:''};
     jsObject.id = titleval+descriptionval;
@@ -34,41 +34,14 @@ function handleDeletion(title){
       return {...prevState, projects: editedProjects}});
       
   updateSelection(null, null);
-  // const newData = (data.projects.filter(entry => {
-  //     return entry.id !== title}));
-  // console.log(newData
 };
 
 function addTask(newTask, projectId) {
-  // console.log(selectedProject);
-  // const newTask = refInputExists.current.value;
-  // console.log(newTask);
-  // console.log(projectId);
-  // const updatedData = {
-  //     ...selectedProject,
-  //     listOfTasks: newList
-  // };
-  // setSelection(data);
+
   setLocalButtonClicked(projectId);
   updateState(prevState => {
     const newData = { text: newTask, id: newTask, projectId: projectId};
     return {...prevState, tasks: [...prevState.tasks, newData]}});
-  // const newState = data.map(entry => {
-  //     if (entry.id === projectId){
-  //     const newEntry = {...entry, listOfTasks: [...entry.listOfTasks, newTask]};
-  //     return newEntry;
-  //     }
-  //     return entry});
-  // console.log(newState);
-  // updateState(newState);
-  // const newTaskbase = [...taskBase, refInputExists.current.value]
-  // updateState(newState);
-  // updateTaskBase(newTaskbase);
-  // refInputExists.current.value = "";
-  // setInputChecker(false);
-  // setLocalButtonClicked(true);
-  // setSelection(projectId, newTask);
-
 }
 
 
@@ -87,25 +60,7 @@ function clearTask (val, projectId) {
         setLocalButtonClicked(false);
       }
   return {...prevState, tasks: editedData}});
-  // data.tasks.map(entry => {
-  //   if (entry.id === projectId){
-  //       const editedArray = entry.listOfTasks.filter(task => task !== val);
-  //       const newEntry = {...entry, listOfTasks: editedArray};
-  //       console.log(newEntry);
-  //       console.log(projectId);
-  //       updateState(prevState => prevState.map(entry=>
-  //           entry.id === projectId ? newEntry : entry
-  //       ))
-  //       if (editedArray.length === 0){
-  //           // setLocalButtonClicked(false);
-  //       }
-  //       return newEntry;
-  //   }
-  //   return entry;
 }
-useEffect(() => {
-  console.log('State updated:', dictState);
-}, [dictState]);
 
   const setDialogState = (val) =>
     setBigDialogOpen(val);
@@ -119,8 +74,6 @@ useEffect(() => {
     };
 
   }
-
-  // useEffect(()=>{console.log(localButtonClicked), [localButtonClicked]})
 
 
   const clickButton = (val) => {
