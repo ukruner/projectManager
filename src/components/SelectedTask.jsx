@@ -5,35 +5,14 @@ import Button from "./Button";
 export default function SelectedTask ({ handleDeletion, localButtonClicked, addTask, clearTask, data, title, updateState, updateSelection }){
 
     const [selection, setSelection] = useState({id: ''});
-    // const [buttonClicked, setButtonClicked] = useState(false);
-    
-    // console.log(data);
+
     useEffect(()=>{if (title){
-    const filtered = data.filter(entry => {
+        const filtered = data.filter(entry => {
         if (entry.title+entry.description === title){
             return entry;
-        }
-    })
-    // console.log(title);
-    // console.log(filtered[0])
-    setSelection(filtered[0])}}, [title]);
+        }})
+        setSelection(filtered[0])}}, [title]);
 
-    // const updateProjectTasks = (projectId, newTask) => {
-    //     console.log("Updating project:", projectId, "with tasks:", newTask); // Debugging
-    //     console.log(data);
-    //     const newState = 
-    //         data.map(project =>{
-    //             if(project.id === projectId){
-    //                 console.log('condition true');
-    //                 const newTaskList = [...project.listOfTasks, newTask];
-    //                 return {...project, listOfTasks: newTaskList}}
-    //                 else {
-    //                     console.log('condition false');
-    //                     return project}});
-    //     console.log(newState);
-    //     updateState(newState);
-    //     ;
-    // };
 
     function handleClickDeletion(){
         handleDeletion(title);
