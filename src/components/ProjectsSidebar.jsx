@@ -3,8 +3,6 @@ import Button from "./Button";
 
 export default function ProjectsSidebar({ setLocalButtonClicked, title, updateSelection, dictState, handleAddProject}){
 
-    const pointerRef = useRef();
-
     useEffect (()=>{
         handleHighlight; 
         if(listPopulated(title)){setLocalButtonClicked(title)} 
@@ -24,8 +22,8 @@ export default function ProjectsSidebar({ setLocalButtonClicked, title, updateSe
         else {return true}
     }
     
-    function handleHighlight(val1, val2){
-        updateSelection(val1, val2);
+    function handleHighlight(title){
+        updateSelection(title);
     }
 
     
@@ -36,10 +34,8 @@ export default function ProjectsSidebar({ setLocalButtonClicked, title, updateSe
         <section className="mt-8">
             <ol>
                 <li>
-                    {dictState.length > 0 && dictState.map(entry=>{return <button ref={pointerRef} onClick={()=>handleHighlight(entry.title, entry.description)} className={`${title === entry.title+entry.description ? 'active: bg-stone-800': ''} w-full text-left px-2 py-1 rounded-sm my-1 hover:text-stone-200 hover:bg-stone-800`} key={entry.title+entry.description}>
-            Title: {entry.title}
-            Description: {entry.description}
-            Due Date: {entry.dueDate}
+                    {dictState.length > 0 && dictState.map(entry=>{return <button onClick={()=>handleHighlight(entry.id)} className={`${title === entry.title+entry.description ? 'active: bg-stone-800': ''} w-full text-left px-2 py-1 rounded-sm my-1 hover:text-stone-200 hover:bg-stone-800`} key={entry.title+entry.description}>
+            Title:{entry.title} Description: {entry.description} Due Date: {entry.dueDate}
         </button>})}
                 </li>
             </ol>

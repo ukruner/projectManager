@@ -90,10 +90,9 @@ function App() {
     setBigDialogOpen(val);
 
 
-  const updateSelection = (val, val2) => {
-    const stringsum = val+val2;
-    if (stringsum){
-    setTitleSelected(stringsum)}
+  const updateSelection = (id) => {
+    if (id){
+    setTitleSelected(id)}
     else{
       setTitleSelected(null);
     };
@@ -118,8 +117,8 @@ function App() {
   return (
     <main className="h-screen my-8 flex gap-8">
       <ProjectsSidebar setLocalButtonClicked={updateButton} buttonClicked={buttonClicked} title={titleSelected} updateSelection={updateSelection} handleAddProject={handleAddProject} dictState={dictState}></ProjectsSidebar>
-      {titleSelected ? <SelectedTask handleDeletion={handleDeletion} localButtonClicked={localButtonClicked} addTask={addTask} clearTask={clearTask} title={titleSelected} data={dictState} updateState={updateState} updateSelection={updateSelection} ></SelectedTask> : <DefaultScreen handleAddProject={handleAddProject}></DefaultScreen>}
-      {buttonClicked && <NewProject sendFormBody={sendFormBody} buttonClicked={buttonClicked} clickButton={clickButton} dialogState={bigDialogOpen} setDialogState={setDialogState} dictState={dictState} updateState={updateState}></NewProject>}
+      {titleSelected ? <SelectedTask handleDeletion={handleDeletion} localButtonClicked={localButtonClicked} addTask={addTask} clearTask={clearTask} title={titleSelected} dictState={dictState} setDictState={updateState} updateSelection={updateSelection} ></SelectedTask> : <DefaultScreen handleAddProject={handleAddProject}></DefaultScreen>}
+      {buttonClicked && <NewProject sendFormBody={sendFormBody} buttonClicked={buttonClicked} clickButton={clickButton} dialogState={bigDialogOpen} setDialogState={setDialogState} dictState={dictState}></NewProject>}
     </main>
   );
 }

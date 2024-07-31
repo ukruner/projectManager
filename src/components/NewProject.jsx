@@ -13,6 +13,7 @@ export default function NewProject({sendFormBody, clickButton, dictState, dialog
 
 
     const [output, setOutput] = useState(false);
+    
     let findCurrentVal = [];
 
     useEffect(()=>{if (dialogRef.current){

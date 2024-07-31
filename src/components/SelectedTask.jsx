@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import SubTasks from "./SubTasks";
 import Button from "./Button";
 
-export default function SelectedTask ({ handleDeletion, localButtonClicked, addTask, clearTask, data, title, updateState, updateSelection }){
+export default function SelectedTask ({ handleDeletion, localButtonClicked, addTask, clearTask, dictState, title }){
 
     const [selection, setSelection] = useState({id: ''});
 
     useEffect(()=>{if (title){
-        const filtered = data.filter(entry => {
+        const filtered = dictState.filter(entry => {
         if (entry.title+entry.description === title){
             return entry;
         }})
@@ -27,6 +27,6 @@ export default function SelectedTask ({ handleDeletion, localButtonClicked, addT
         </div>
         <p className="mb-4 text-stone-400">Due Date: {selection.dueDate}</p>
         <p className="text-stone-600 whitespace-pre-wrap">Description: {selection.description}</p></>}</header>
-        <SubTasks localButtonClicked={localButtonClicked} addTask={addTask} clearTask={clearTask} data = {data} updateState={updateState} selectedProject={selection}  title={title} key={selection.id} projectId={selection.id}></SubTasks>
+        <SubTasks localButtonClicked={localButtonClicked} addTask={addTask} clearTask={clearTask} dictState={dictState} selectedProject={selection} title={title} key={selection.id} ></SubTasks>
         </div>
 }

@@ -3,7 +3,7 @@ import Input from "./Input"
 import Button from "./Button"
 
 
-export default function SubTasks ({data, localButtonClicked, addTask, clearTask, selectedProject, projectId }){
+export default function SubTasks ({dictState, localButtonClicked, addTask, clearTask, selectedProject, title }){
 
     const refInputExists = useRef();
 
@@ -21,7 +21,7 @@ export default function SubTasks ({data, localButtonClicked, addTask, clearTask,
     }
 
     function handleDelete(val){
-        clearTask(val, projectId)};
+        clearTask(val, title)};
 
     return <div>
         <h2 className="text-2xl font-bold text-stone-700 mb-4">Tasks</h2>
@@ -30,8 +30,8 @@ export default function SubTasks ({data, localButtonClicked, addTask, clearTask,
             <Input ref={refInputExists} classic={true}></Input>
             <Button onClick={handleSave} className="text-stone-600 hover:text-stone-950 px-2"> Add Task </Button>
             </div>
-            { localButtonClicked === projectId && <ul className="p-4 mt-8 rounded-md bg-stone-100">
-            {data.filter(entry => entry.id === projectId).map((entry)=> entry.tasks.map(task => (<li key={task} className="flex justify-between my-4"> <p>{task}</p><Button onClick={() => handleDelete(task)} className="text-stone-600 hover:text-stone-950 px-2">Clear</Button>
+            { localButtonClicked === title && <ul className="p-4 mt-8 rounded-md bg-stone-100">
+            {dictState.filter(entry => entry.id === title).map((entry)=> entry.tasks.map(task => (<li key={task} className="flex justify-between my-4"> <p>{task}</p><Button onClick={() => handleDelete(task)} className="text-stone-600 hover:text-stone-950 px-2">Clear</Button>
                     </li>)))}
 
             </ul>}
