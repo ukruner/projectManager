@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Button from "./Button";
 
 export default function ProjectsSidebar({
@@ -7,10 +6,6 @@ export default function ProjectsSidebar({
   updateSelection,
   handleAddProject,
 }) {
-  useEffect(() => {
-    handleHighlight;
-  }, [updateSelection]);
-
   function handleHighlight(title) {
     updateSelection(title);
   }

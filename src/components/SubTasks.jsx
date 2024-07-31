@@ -25,6 +25,33 @@ export default function SubTasks({
     }
   }
 
+  function addTask(newTask, projectId) {
+    console.log(newTask);
+    projects = projects.filter((project) => {
+      if (project.id === projectId) {
+        project.tasks.push(newTask);
+        console.log(project.tasks);
+        return project;
+      } else {
+        return project;
+      }
+    });
+  }
+
+  function clearTask(val, projectId) {
+    projects = projects.filter((project) => {
+      if (project.id === projectId) {
+        project.tasks = project.tasks.filter((task) => {
+          return task !== val;
+        });
+        console.log(project.tasks);
+        return project;
+      } else {
+        return project;
+      }
+    });
+  }
+
   function handleDelete(val) {
     clearTask(val, title);
     const projectSelected = projects.find((entry) => entry.id === title);

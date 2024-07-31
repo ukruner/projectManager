@@ -61,6 +61,16 @@ export default function NewProject({
     }
   }
 
+  function sendFormBody(titleval, descriptionval, dueDateval) {
+    projects.push({
+      id: titleval + descriptionval,
+      title: titleval,
+      description: descriptionval,
+      dueDate: dueDateval,
+      tasks: [],
+    });
+  }
+
   function onReset() {
     setOutput("");
 

@@ -2,13 +2,7 @@ import { useState, useEffect } from "react";
 import SubTasks from "./SubTasks";
 import Button from "./Button";
 
-export default function SelectedTask({
-  projects,
-  handleDeletion,
-  addTask,
-  clearTask,
-  title,
-}) {
+export default function SelectedTask({ projects, handleDeletion, title }) {
   const [selection, setSelection] = useState();
 
   useEffect(() => {
@@ -52,8 +46,6 @@ export default function SelectedTask({
       <SubTasks
         selection={selection}
         projects={projects}
-        addTask={addTask}
-        clearTask={clearTask}
         selectedProject={selection}
         title={title}
       ></SubTasks>
