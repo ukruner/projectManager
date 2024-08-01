@@ -1,4 +1,5 @@
 import Button from "./Button";
+import { useEffect } from "react";
 
 export default function ProjectsSidebar({
   projects,
@@ -6,6 +7,13 @@ export default function ProjectsSidebar({
   updateSelection,
   handleAddProject,
 }) {
+
+
+    useEffect(() => {
+        // This useEffect will trigger on changes to dummyState
+        console.log("ProjectsSidebar re-rendered");
+      }, [projects]);
+
   function handleHighlight(title) {
     updateSelection(title);
   }

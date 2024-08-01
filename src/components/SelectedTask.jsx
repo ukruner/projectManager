@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import SubTasks from "./SubTasks";
 import Button from "./Button";
 
-export default function SelectedTask({ projects, handleDeletion, title }) {
+export default function SelectedTask({ projects, updateSelection, handleDeletion, title }) {
   const [selection, setSelection] = useState();
 
   useEffect(() => {
@@ -17,7 +17,15 @@ export default function SelectedTask({ projects, handleDeletion, title }) {
   }, [title]);
 
   function handleClickDeletion() {
-    handleDeletion(title);
+    handleDeletion(selection);
+  }
+
+  function handleDeletion(selection) {
+    let index = projects.indexOf(selection);
+    console.log(index);
+    projects = projects.splice(index, 1);
+    console.log(projects);
+    updateSelection(null, null);
   }
 
   return (
@@ -48,6 +56,7 @@ export default function SelectedTask({ projects, handleDeletion, title }) {
         projects={projects}
         selectedProject={selection}
         title={title}
+        updateSelection={updateSelection}
       ></SubTasks>
     </div>
   );

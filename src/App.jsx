@@ -11,10 +11,6 @@ function App() {
   const [titleSelected, setTitleSelected] = useState();
   const [bigDialogOpen, setBigDialogOpen] = useState(false);
 
-  useEffect(() => {
-    console.log("Main project db updated:", projects);
-  }, [pageRender]);
-
   const setDialogState = (val) => setBigDialogOpen(val);
 
   const updateSelection = (id) => {
@@ -25,11 +21,7 @@ function App() {
     }
   };
 
-  function handleDeletion(title) {
-    projects = projects.filter((entry) => entry.id !== title);
-    console.log(projects);
-    updateSelection(null, null);
-  }
+
 
   const clickButton = (val) => {
     setButtonClicked(val);
@@ -54,7 +46,6 @@ function App() {
           projects={projects}
           title={titleSelected}
           updateSelection={updateSelection}
-          handleDeletion={handleDeletion}
         ></SelectedTask>
       ) : (
         <DefaultScreen handleAddProject={handleAddProject}></DefaultScreen>
