@@ -2,7 +2,7 @@ import ProjectsSidebar from "./components/ProjectsSidebar";
 import NewProject from "./components/NewProject";
 import SelectedTask from "./components/SelectedTask";
 import DefaultScreen from "./components/defaultScreen";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 let projects = [];
 

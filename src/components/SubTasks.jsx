@@ -13,6 +13,7 @@ export default function SubTasks({
 
   const [inputChecker, setInputChecker] = useState(false);
   const [taskPopulator, setTaskPopulator] = useState(true);
+// taskPopulator is a dummy state, in order to trigger component re-render after a task has been deleted.
 
   function handleSave() {
     if (refInputExists.current.value) {
@@ -78,7 +79,7 @@ export default function SubTasks({
           Add Task{" "}
         </Button>
       </div>
-      {selection && selection.tasks.length > 0 && taskPopulator && (
+      {selection && selection.tasks.length > 0 && (
         <ul className="p-4 mt-8 rounded-md bg-stone-100">
           {projects
             .filter((entry) => entry.id === title)
