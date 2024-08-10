@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import Input from "./Input";
 import Button from "./Button";
+import Modal from "./Modal";
 
 export default function NewProject({
   sendFormBody,
@@ -13,7 +14,7 @@ export default function NewProject({
   const descRef = useRef();
   const dueDateRef = useRef();
 
-  const dialogRef = useRef();
+  const modalRef = useRef();
   const bigDialogRef = useRef();
 
   const [output, setOutput] = useState(false);
@@ -21,14 +22,14 @@ export default function NewProject({
   let findCurrentVal = [];
 
   useEffect(() => {
-    if (dialogRef.current) {
-      dialogRef.current.showModal();
+    if (modalRef.current) {
+     modalRef.current.open();
     }
   }, [output]);
 
   useEffect(() => {
     if (bigDialogRef.current) {
-      bigDialogRef.current.showModal();
+      bigDialogRef.current.open();
     }
   }, [dialogState]);
 
@@ -74,8 +75,8 @@ export default function NewProject({
   function onReset() {
     setOutput("");
 
-    if (dialogRef.current) {
-      dialogRef.current.close();
+    if (modalRef.current) {
+      modalRef.current.close();
     }
   }
 
@@ -88,7 +89,7 @@ export default function NewProject({
   }
 
   return (
-    <dialog
+    <Modal
       ref={bigDialogRef}
       onClose={onBigReset}
       className="backdrop:bg-stone-900/90 p-4 rounded-md shadow-md"
@@ -125,15 +126,7 @@ export default function NewProject({
           Due Date
         </Input>
       </div>
-      {output && (
-        <dialog
-          className="backdrop:bg-stone-900/90 p-4 rounded-md shadow-md"
-          ref={dialogRef}
-          onClose={onReset}
-        >
-          {output}
-        </dialog>
-      )}
-    </dialog>
+      {output && <Modal className="backdrop:bg-stone-900/90 p-4 rounded-md shadow-md" ref={modalRef} onClose={onReset}>{output}</Modal>}
+    </Modal>
   );
 }
